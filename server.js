@@ -20,3 +20,12 @@ app.get('/notes', (req, res) => {
 app.get('/api/notes', (req, res) => {
   res.json(db);
 });
+
+// Post notes
+app.post('/api/notes', (req, res) => {
+  const newNote = req.body;
+  newNote.id = Math.floor(Math.random().toFixed(2)*100);
+  db.push(newNote);
+  fs.writeFileSync(path.join(__dirname, 'db', 'db.json'), JSON.stringify(db));
+  res.json(newNote);
+});
