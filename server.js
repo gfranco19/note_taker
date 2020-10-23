@@ -29,3 +29,6 @@ app.post('/api/notes', (req, res) => {
   fs.writeFileSync(path.join(__dirname, 'db', 'db.json'), JSON.stringify(db));
   res.json(newNote);
 });
+
+//listening
+app.listen(PORT, () => { console.log('App listening on PORT ' + PORT); });
