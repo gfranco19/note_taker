@@ -29,6 +29,21 @@ app.post('/api/notes', (req, res) => {
   fs.writeFileSync(path.join(__dirname, 'db', 'db.json'), JSON.stringify(db));
   res.json(newNote);
 });
+// DELETE
+//CANT GET TO DELETE BASED ON ID
+app.delete('/api/notes/:id', (req, res) => {
+  const note = req.params;
+  const noteId= note.id;
+  let index = db.map(x=>{
+    return x.noteId;
+  }).indexOf(noteId);
+  db.splice(index.id, 1);
+  // if(noteId >= 0 && noteId <= 100){
+    console.log (noteId);
+  //     db.splice(note,1)}
+  fs.writeFileSync(path.join(__dirname, 'db', 'db.json'), JSON.stringify(db));
+  res.json({ok:true});
+});
 
 //listening
 app.listen(PORT, () => { console.log('App listening on PORT ' + PORT); });
